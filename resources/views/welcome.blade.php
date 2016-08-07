@@ -13,12 +13,28 @@
             <div class="strike">
                 <span>Get in via email</span>
             </div>
-            <form class="form-inline">
-                <div class="form-group">
-                    <input type="email" placeholder="Email" class="form-control">
+            @if(session('invited'))
+                <div class="alert alert-info">
+                    Go ahead and check this email!
                 </div>
-                <a href="#" class="btn btn-lg btn-dark">Get In</a>
-            </form>
+            @else
+                <form class="form-inline" method="POST" action="/get-in">
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                                <p>{{ $error }}</p>
+                            @endforeach
+                        </div>
+                    @endif
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <input type="email" value="{{ old('email') }}" name="email" placeholder="Email"
+                               class="form-control"
+                               required>
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-dark">Get In</button>
+                </form>
+            @endif
         </div>
         <div class="social row">
             <div class="strike">

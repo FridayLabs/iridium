@@ -5,8 +5,8 @@
     <link rel="stylesheet" href="/css/app.css"/>
 </head>
 <body>
-<div id="app" class="container text-center">
-
+<div id="app">
+    <navigation></navigation>
 </div>
 <script src="/js/app.js"></script>
 </body>
