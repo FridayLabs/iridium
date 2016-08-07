@@ -7,6 +7,9 @@
 <body>
 <div id="app">
     <navigation></navigation>
+    <div class="router-container container">
+        <router-view></router-view>
+    </div>
 </div>
 <script src="/js/app.js"></script>
 </body>
