@@ -13,16 +13,16 @@
             <div class="strike">
                 <span>Get in via email</span>
             </div>
-            <div class="col-md-8">
-                <input type="email" placeholder="Email" class="form-control">
-            </div>
-            <div class="col-md-4">
+            <form class="form-inline">
+                <div class="form-group">
+                    <input type="email" placeholder="Email" class="form-control">
+                </div>
                 <a href="#" class="btn btn-lg btn-dark">Get In</a>
-            </div>
+            </form>
         </div>
         <div class="social row">
             <div class="strike">
-                <span>or via social links</span>
+                <span>or via social network</span>
             </div>
             <ul class="list-inline">
                 <li><a href="#"><i class="fa fa-vk"></i></a></li>
