@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container navigation-bar">
         <div class="row">
             <div class="col-md-2">
                 <a class="logo pull-left" v-link="'/'">△</a>
@@ -14,6 +14,13 @@
     </div>
 </template>
 <style lang="scss">
+    .navigation-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
     a.logo {
         font-size: 36px;
         font-weight: bold;
