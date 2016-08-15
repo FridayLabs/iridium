@@ -15,13 +15,18 @@ class AuthController extends Controller
             'email' => 'required|email'
         ]);
         $authenticatesUser->invite($request->get('email'));
-        return redirect()->back()->with('invited', true);
+        return 'Invited';
     }
 
     public function getInViaToken(LoginToken $token, AuthenticatesUser $authenticatesUser)
     {
         $authenticatesUser->loginViaToken($token);
         return redirect('/');
+    }
+
+    public function sociallyGetIn($provider)
+    {
+
     }
 
     public function getOut()

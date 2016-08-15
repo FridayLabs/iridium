@@ -14,8 +14,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public static function generateInviteToken()
+    public function vk()
     {
-        return str_random(50);
+        return $this->hasOne(VkAccount::class);
     }
 }

@@ -3,6 +3,7 @@
 <head>
     <title>Iridium</title>
     <link rel="stylesheet" href="/css/app.css"/>
+    <meta id="token" name="token" value="{{ csrf_token() }}">
 </head>
 <body>
 <div id="app">

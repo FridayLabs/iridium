@@ -9,6 +9,8 @@ import Settings from './components/view/settings.vue'
 Vue.use(VueRouter);
 Vue.use(VueResource);
 
+Vue.http.headers.common['X-CSRF-TOKEN'] = document.getElementById('token').getAttribute('value');
+
 let app = Vue.extend({
     components: {
         navigation: Navigation
