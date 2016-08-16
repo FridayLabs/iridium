@@ -9,14 +9,15 @@
             <div class="alert alert-info" v-show="invited">
                 Go ahead and check this email!
             </div>
+            <div class="alert alert-danger" v-show="errors.length">
+                <p v-for="error in errors">{{ error }}</p>
+            </div>
             <form class="form-inline" v-show="!invited">
-                <div class="alert alert-danger" v-show="errors.length">
-                    <p v-for="error in errors">{{ error }}</p>
-                </div>
                 <div class="form-group">
                     <input type="email" v-model="email" name="email" placeholder="Email" class="form-control" required>
                 </div>
-                <button type="submit" class="btn btn-lg btn-dark" @click="getIn">{{ button }}</button>
+                <button v-show="!loading" type="submit" class="btn btn-lg btn-dark" @click="getIn">Get In</button>
+                <button v-show="loading" type="submit" class="btn btn-lg btn-dark" disabled="disabled">Getting in</button>
             </form>
         </div>
         <div class="social row">
@@ -38,11 +39,6 @@
                 loading: false,
                 invited: false,
                 email: ''
-            }
-        },
-        computed: {
-            button: function () {
-                return !this.loading ? 'Get In' : 'Getting In'
             }
         },
         methods: {
