@@ -1,35 +1,38 @@
 <template>
-    <div class="content">
-        <div class="triangle">△</div>
-        <div class="title">IRIDIUM</div>
-        <div class="form row">
-            <div class="strike">
-                <span>Get in via email</span>
-            </div>
-            <div class="alert alert-info" v-show="invited">
-                Go ahead and check this email!
-            </div>
-            <div class="alert alert-danger" v-show="errors.length">
-                <p v-for="error in errors">{{ error }}</p>
-            </div>
-            <form class="form-inline" v-show="!invited">
-                <div class="form-group">
-                    <input type="email" v-model="email" name="email" placeholder="Email" class="form-control" required>
+
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="triangle">△</div>
+                <div class="title-logo">IRIDIUM</div>
+                <div class="strike">
+                    <span>Get in via email</span>
                 </div>
-                <button v-show="!loading" type="submit" class="btn btn-lg btn-dark" @click="getIn">Get In</button>
-                <button v-show="loading" type="submit" class="btn btn-lg btn-dark" disabled="disabled">Getting in</button>
-            </form>
-        </div>
-        <div class="social row">
-            <div class="strike">
-                <span>or via social network</span>
+                <form v-show="!invited">
+                    <div class="control is-grouped has-addons has-addons-centered">
+                        <p class="control">
+                            <input v-model="email" v-bind:class="['input', errors.length ? 'is-danger' : '']"
+                                   type="email" placeholder="Email">
+                            <span v-for="error in errors" class="help is-danger">{{ error }}</span>
+                        </p>
+                        <p class="control">
+                            <button v-bind:class="['button', 'is-primary', 'is-font-heavy', loading ? 'is-loading' : '']"
+                                    @click="getIn">GET IN
+                            </button>
+                        </p>
+                    </div>
+                </form>
+                <div class="notification notification-welcome" v-show="invited">
+                    Go ahead and check that email!
+                </div>
+                <div class="strike">
+                    <span>or via social network</span>
+                </div>
+                <a href="#" class="social-icon" @click="getInSocial('vk', $event)"><i class="fa fa-vk"></i></a>
+                <a href="#" class="social-icon" @click="getInSocial('fb', $event)"><i class="fa fa-facebook"></i></a>
             </div>
-            <ul class="list-inline">
-                <li><a href="#" @click="getInSocial('vk', $event)"><i class="fa fa-vk"></i></a></li>
-                <li><a href="#" @click="getInSocial('fb', $event)"><i class="fa fa-facebook"></i></a></li>
-            </ul>
         </div>
-    </div>
+    </section>
 </template>
 <script>
     export default{

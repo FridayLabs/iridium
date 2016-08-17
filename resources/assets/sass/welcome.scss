@@ -1,47 +1,38 @@
-@import 'bootstrap';
+@import 'bulma';
 @import url(https://fonts.googleapis.com/css?family=Lato:100);
-
-html, body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  display: table;
-}
-
-.container {
-  text-align: center;
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.content {
-  text-align: center;
-  display: inline-block;
-}
 
 .triangle {
   margin: -70px;
   font-size: 192px;
+  color: #52565a;
 }
 
-.title {
+.title-logo {
   font-weight: 100;
   font-family: 'Lato', sans-serif;
   font-size: 72px;
+  color: #52565a;
 }
 
-.social a {
-  font-size: 25px;
+.is-font-heavy {
+  font-weight: 600;
 }
 
 .strike {
-  margin: 20px 0;
+  width: 270px;
+  margin: 0 auto 10px;
 }
 
-.form-inline {
-  margin-top: 20px;
+.social-icon {
+  font-size: 25px;
+  margin-right: 10px;
+}
+
+form {
+  margin-bottom: 10px;
+}
+
+.notification-welcome {
+  width: 270px;
+  margin: 10px auto 10px !important;
 }

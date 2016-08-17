@@ -1,0 +1,49 @@
+$family-sans-serif: 'Raleway', Arial, sans-serif;
+$body-background: #fff;
+$radius: 0px;
+$primary: #69707a;
+
+
+@import 'node_modules/bulma/bulma';
+@import 'node_modules/font-awesome/scss/font-awesome';
+@import url(http://fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,700,800);
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+.input, .textarea {
+  box-shadow: none;
+}
+
+.strike {
+  display: block;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.strike > span {
+  position: relative;
+  display: inline-block;
+}
+
+.strike > span:before,
+.strike > span:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 9999px;
+  height: 1px;
+  background: #494949;
+}
+
+.strike > span:before {
+  right: 100%;
+  margin-right: 15px;
+}
+
+.strike > span:after {
+  left: 100%;
+  margin-left: 15px;
+}
