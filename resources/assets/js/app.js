@@ -1,30 +1,20 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import VueResource from 'vue-resource'
+require('./bootstrap');
 
-import Navigation from './components/navigation.vue'
-import Home from './components/view/home.vue'
-import Settings from './components/view/settings.vue'
+let VueRouter = require('vue-router');
 
-Vue.use(VueRouter);
-Vue.use(VueResource);
-
-Vue.http.headers.common['X-CSRF-TOKEN'] = document.getElementById('token').getAttribute('value');
-
-let app = Vue.extend({
+const app = Vue.extend({
     components: {
-        navigation: Navigation
+        // navigation: require('./components/navigation.vue')
     }
 });
 
 const router = new VueRouter();
 router.map({
-    '/': {component: Home},
-    '/settings': {component: Settings},
+    '/': {component: require('./components/view/home.vue')},
+    '/settings': {component: require('./components/view/settings.vue')},
 });
 router.redirect({
     '*': '/'
 });
 
 router.start(app, '#app');
-

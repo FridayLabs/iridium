@@ -55,7 +55,10 @@ return [
     |
     */
 
-    'from' => ['address' => 'noreply@iridium.dev', 'name' => 'Iridium'], // TODO fix domain
+    'from' => [
+        'address' => 'hello@example.com',
+        'name' => 'Example',
+    ],
 
     /*
     |--------------------------------------------------------------------------

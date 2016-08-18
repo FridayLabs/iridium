@@ -1,18 +1,14 @@
 process.env.DISABLE_NOTIFIER = true;
 
-var elixir = require('laravel-elixir');
+const elixir = require('laravel-elixir');
 
-require('laravel-elixir-vueify');
+require('laravel-elixir-vue');
 
-elixir(function (mix) {
-
+elixir(mix => {
     var node_modules = '../../../node_modules/';
-
     mix.copy('node_modules/font-awesome/fonts', 'public/fonts');
-
-    mix.browserify('app.js');
-    mix.browserify('welcome.js');
-
+    mix.webpack('app.js');
+    mix.webpack('welcome.js');
     mix.sass([
         'app.scss'
     ], 'public/css/app.css');

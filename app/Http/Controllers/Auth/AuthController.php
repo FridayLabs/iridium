@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Iridium\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
-use App\Http\Behaviors\AuthenticatesUser;
-use App\Http\Controllers\Controller;
-use App\LoginToken;
+use Iridium\Http\Behaviors\AuthenticatesUser;
+use Iridium\Http\Controllers\Controller;
+use Iridium\LoginToken;
 
 class AuthController extends Controller
 {

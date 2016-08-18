@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Behaviors;
+namespace Iridium\Http\Behaviors;
 
-use App\LoginToken;
-use App\User;
+use Iridium\LoginToken;
+use Iridium\Mail\UserInvite;
+use Iridium\User;
 use Illuminate\Support\Facades\Mail;
 
 class AuthenticatesUser
@@ -11,9 +12,7 @@ class AuthenticatesUser
     public function invite($email)
     {
         $token = LoginToken::make($email);
-        Mail::queue('emails.invite', ['token' => $token], function ($m) use ($email) {
-            $m->to($email)->subject('Your login token');
-        });
+        Mail::to($email)->queue(new UserInvite($token));
     }
 
     public function loginViaToken(LoginToken $token)
