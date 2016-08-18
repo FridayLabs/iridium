@@ -1,0 +1,40 @@
+version: '2'
+services:
+    web:
+        build:
+            context: ./
+            dockerfile: docker/web.docker
+        volumes:
+            - ./:/var/www
+        ports:
+            - "8080:80"
+        links:
+            - app
+    app:
+        build:
+            context: ./
+            dockerfile: docker/app.docker
+        volumes:
+            - ./:/var/www
+        links:
+            - mysql
+            - redis
+            - beanstalkd
+        environment:
+            DB_PORT: 3306
+            DB_HOST: mysql
+            REDIS_PORT: 6379
+            REDIS_HOST: redis
+    mysql:
+        image: mysql:5.6
+        environment:
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_DATABASE: ${DB_DATABASE}
+        ports:
+            - "33061:3306"
+    redis:
+        image: redis:3.0
+        ports:
+            - "63791:6379"
