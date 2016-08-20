@@ -2,5 +2,10 @@ language: php
 php:
   - '7.0'
 
-before_script: composer install && npm install -no-progress --no-spin && gulp
+env:
+  - TRAVIS_NODE_VERSION="6"
+
+install:
+  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
+  - composer install && npm install -no-progress --no-spin && gulp
 script: ./runtests
