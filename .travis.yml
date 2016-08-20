@@ -15,4 +15,5 @@ install:
   - composer install --prefer-dist
   - npm install --no-progress --no-spin
   - gulp
+  - cp .env.example .env
 script: ./runtests
