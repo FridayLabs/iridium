@@ -15,7 +15,7 @@ def main():
         call(app_cmd + 'vendor/bin/codecept build')
         call(app_cmd + 'vendor/bin/codecept run ' + ' '.join(sys.argv[1:]))
     finally:
-        call('docker-compose --project-name=iridiumtest kill')
+        call('docker-compose --project-name=iridiumtest down')
 
 
 if __name__ == '__main__':
