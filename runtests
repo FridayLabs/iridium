@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+
+import os, time, sys
+from functools import partial
+from subprocess import check_call
+
+call = partial(check_call, shell=True)
+
+def main():
+    call('docker-compose --project-name=iridiumtest -f docker-compose.testing.yml up -d')
+    time.sleep(10)
+    try:
+        app_cmd = 'docker exec iridiumtest_app_1 '
+        call(app_cmd + 'php artisan migrate:refresh --seed')
+        call(app_cmd + 'vendor/bin/codecept build')
+        call(app_cmd + 'vendor/bin/codecept run ' + ' '.join(sys.argv[1:]))
+    finally:
+        call('docker-compose --project-name=iridiumtest kill')
+
+
+if __name__ == '__main__':
+    main()

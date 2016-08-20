@@ -1,0 +1,28 @@
+version: '2'
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: dockerfiles/web.docker
+    volumes:
+      - ../:/var/www
+  app:
+    build:
+      context: ./
+      dockerfile: dockerfiles/app.docker
+    volumes:
+      - ../:/var/www
+    environment:
+      DB_PORT: 3306
+      DB_HOST: mysql
+      REDIS_PORT: 6379
+      REDIS_HOST: redis
+  mysql:
+    image: mysql:5.6
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+  redis:
+    image: redis:3.0

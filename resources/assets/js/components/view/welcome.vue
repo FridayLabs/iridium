@@ -10,12 +10,14 @@
                 <form v-show="!invited">
                     <div class="control is-grouped has-addons has-addons-centered">
                         <p class="control">
-                            <input v-model="email" v-bind:class="['input', errors.length ? 'is-danger' : '']"
+                            <input v-model="email" name="email"
+                                   v-bind:class="['input', errors.length ? 'is-danger' : '']"
                                    type="email" placeholder="Email">
                             <span v-for="error in errors" class="help is-danger">{{ error }}</span>
                         </p>
                         <p class="control">
                             <button v-bind:class="['button', 'is-primary', 'is-font-heavy', loading ? 'is-loading' : '']"
+                                    type="submit"
                                     @click="getIn">GET IN
                             </button>
                         </p>

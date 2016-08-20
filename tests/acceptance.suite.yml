@@ -1,0 +1,13 @@
+class_name: AcceptanceTester
+modules:
+    enabled:
+        - Laravel5:
+            environment_file: .env
+            part: ORM
+            cleanup: false
+        - WebDriver:
+            url: 'http://web/'
+            host: selenium
+            port: 4444
+            browser: chrome
+        - \Helper\Acceptance
