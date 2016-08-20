@@ -1,7 +1,11 @@
 sudo: required
 language: php
+
 php:
   - '7.0'
+
+services:
+  - docker
 
 env:
   - TRAVIS_NODE_VERSION="6"
@@ -11,6 +15,4 @@ install:
   - composer install --prefer-dist
   - npm install --no-progress --no-spin
   - gulp
-  - sudo pip install docker-compose
-  - docker-compose version
 script: ./runtests
