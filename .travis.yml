@@ -2,5 +2,5 @@ language: php
 php:
   - '7.0'
 
-before_script: composer install && npm install && gulp
+before_script: composer install && npm install -no-progress --no-spin && gulp
 script: ./runtests
