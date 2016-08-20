@@ -25,11 +25,6 @@
             "Iridium\\": "app/"
         }
     },
-    "autoload-dev": {
-        "classmap": [
-            "tests/TestCase.php"
-        ]
-    },
     "scripts": {
         "post-root-package-install": [
             "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
