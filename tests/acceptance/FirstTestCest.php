@@ -11,7 +11,6 @@ class FirstTestCest
     {
     }
 
-    // tests
     public function welcomeTitle(AcceptanceTester $I)
     {
         $I->amOnPage('/');
