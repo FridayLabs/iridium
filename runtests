@@ -8,7 +8,7 @@ call = partial(check_call, shell=True)
 
 def main():
     call('docker-compose --project-name=iridiumtest -f docker-compose.testing.yml up -d')
-    time.sleep(10)
+    time.sleep(15)
     try:
         app_cmd = 'docker exec iridiumtest_app_1 '
         call(app_cmd + 'php artisan migrate:refresh --seed')
