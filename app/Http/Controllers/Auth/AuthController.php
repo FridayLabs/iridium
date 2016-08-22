@@ -42,8 +42,8 @@ class AuthController extends Controller
 
     public function getInViaSocialCallback($provider)
     {
-        $user = Socialite::with($provider)->user();
-        $this->authenticatesUser->loginViaSocial($provider, $user);
+        $oauthData = Socialite::with($provider)->user();
+        $this->authenticatesUser->loginViaSocial($provider, $oauthData);
         return redirect('/');
     }
 

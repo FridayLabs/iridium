@@ -2,10 +2,11 @@
 
 namespace Iridium\Http\Behaviors;
 
+use Illuminate\Support\Facades\Mail;
 use Iridium\LoginToken;
 use Iridium\Mail\UserInvite;
+use Iridium\Account;
 use Iridium\User;
-use Illuminate\Support\Facades\Mail;
 
 class AuthenticatesUser
 {
@@ -22,11 +23,13 @@ class AuthenticatesUser
         $token->delete();
     }
 
-    public function loginViaSocial($provider, $socialiteUser)
+    public function loginViaSocial($provider, $oauthData)
     {
+        /**
+         * @var $account Account
+         */
         $accountClass = '\Iridium\\' . ucfirst($provider) . 'Account';
-        $user = $accountClass::getUser($socialiteUser);
-
-        auth()->login($user, true);
+        $account = $accountClass::firstOrCreateByOAuthData($oauthData);
+        auth()->login($account->user(), true);
     }
 }

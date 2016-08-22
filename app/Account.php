@@ -23,11 +23,16 @@ abstract class Account extends Model
         $this->token = $oauthData->token;
     }
 
-    public static function getUser($oauthData)
+    protected static function byOAuthId($id)
     {
-        $account = static::where('oauth_id', $oauthData->id)->first();
+        return static::where('oauth_id', $id)->first();
+    }
+
+    public static function firstOrCreateByOAuthData($oauthData)
+    {
+        $account = static::byOAuthId($oauthData->id);
         if ($account) {
-            return $account->user();
+            return $account;
         }
 
         $user = User::firstOrCreate(['email' => $oauthData->email]);
@@ -37,7 +42,7 @@ abstract class Account extends Model
         $account->user_id = $user->id;
         $account->save();
 
-        return $user;
+        return $account;
     }
 
 }
