@@ -29,8 +29,8 @@
                 <div class="strike">
                     <span>or via social network</span>
                 </div>
-                <a href="#" class="social-icon" @click="getInSocial('vk', $event)"><i class="fa fa-vk"></i></a>
-                <a href="#" class="social-icon" @click="getInSocial('fb', $event)"><i class="fa fa-facebook"></i></a>
+                <a href="/get-in/social/vk" class="social-icon" ><i class="fa fa-vk"></i></a>
+                <a href="/get-in/social/facebook" class="social-icon" ><i class="fa fa-facebook"></i></a>
             </div>
         </div>
     </section>
@@ -67,14 +67,6 @@
                         this.invited = false;
                     });
                 }
-            },
-            getInSocial(provider, e) {
-                e.preventDefault();
-                window.open(
-                        '/socially-get-in/' + provider,
-                        'Get In Socially',
-                        'width=600,height=500,toolbar=false,menubar=false,location=false,status=false'
-                );
             }
         }
     }

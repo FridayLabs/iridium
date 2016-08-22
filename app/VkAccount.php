@@ -2,12 +2,6 @@
 
 namespace Iridium;
 
-use Illuminate\Database\Eloquent\Model;
-
-class VkAccount extends Model
+class VkAccount extends Account
 {
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }

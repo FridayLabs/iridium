@@ -6,27 +6,45 @@ use Illuminate\Http\Request;
 use Iridium\Http\Behaviors\AuthenticatesUser;
 use Iridium\Http\Controllers\Controller;
 use Iridium\LoginToken;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
-    public function getIn(Request $request, AuthenticatesUser $authenticatesUser)
+    protected $authenticatesUser;
+
+    public function __construct(AuthenticatesUser $authenticatesUser)
     {
-        $this->validate($request, [
+        $this->authenticatesUser = $authenticatesUser;
+    }
+
+    public function getIn()
+    {
+        $this->validate(request(), [
             'email' => 'required|email'
         ]);
-        $authenticatesUser->invite($request->get('email'));
+        $this->authenticatesUser->invite(request('email'));
         return 'Invited';
     }
 
-    public function getInViaToken(LoginToken $token, AuthenticatesUser $authenticatesUser)
+    public function getInViaToken(LoginToken $token)
     {
-        $authenticatesUser->loginViaToken($token);
+        $this->authenticatesUser->loginViaToken($token);
         return redirect('/');
     }
 
-    public function sociallyGetIn($provider)
+    public function getInViaSocial($provider)
     {
+        if (!in_array($provider, ['vk', 'facebook'])) {
+            abort(404);
+        }
+        return Socialite::with($provider)->redirect();
+    }
 
+    public function getInViaSocialCallback($provider)
+    {
+        $user = Socialite::with($provider)->user();
+        $this->authenticatesUser->loginViaSocial($provider, $user);
+        return redirect('/');
     }
 
     public function getOut()

@@ -35,4 +35,17 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'vk' => [
+        'client_id' => env('VK_KEY'),
+        'client_secret' => env('VK_SECRET'),
+        'redirect' => env('VK_REDIRECT_URI'),
+        'scopes' => ['audio', 'offline']
+    ],
+
+    'facebook' => [
+        'client_id' => env('FACEBOOK_KEY'),
+        'client_secret' => env('FACEBOOK_SECRET'),
+        'redirect' => env('FACEBOOK_REDIRECT_URI'),
+    ]
+
 ];

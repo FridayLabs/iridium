@@ -4,6 +4,8 @@ namespace Iridium\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Iridium\Providers\OAuth\VKSocialiteExtend;
+use \SocialiteProviders\Manager\SocialiteWasCalled;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -13,8 +15,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Iridium\Events\SomeEvent' => [
-            'Iridium\Listeners\EventListener',
+        SocialiteWasCalled::class => [
+            VKSocialiteExtend::class . '@handle',
         ],
     ];
 

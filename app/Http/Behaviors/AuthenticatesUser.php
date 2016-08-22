@@ -21,4 +21,12 @@ class AuthenticatesUser
         auth()->login($user, true);
         $token->delete();
     }
+
+    public function loginViaSocial($provider, $socialiteUser)
+    {
+        $accountClass = '\Iridium\\' . ucfirst($provider) . 'Account';
+        $user = $accountClass::getUser($socialiteUser);
+
+        auth()->login($user, true);
+    }
 }
