@@ -3,11 +3,7 @@
 <head>
     <title>Iridium</title>
     <link rel="stylesheet" href="/css/welcome.css"/>
-    <script>
-        window.Iridium = <?php echo json_encode([
-                'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
+    @include('partials.csrf_token')
 </head>
 <body>
 <div id="app">

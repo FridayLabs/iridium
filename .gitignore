@@ -11,3 +11,5 @@ public/js
 public/fonts
 tests/_output/*
 tests/_support/_generated/*
+
+storage/oauth-private.key

@@ -30,6 +30,6 @@ class AuthenticatesUser
          */
         $accountClass = '\Iridium\\' . ucfirst($provider) . 'Account';
         $account = $accountClass::firstOrCreateByOAuthData($oauthData);
-        auth()->login($account->user(), true);
+        auth()->login($account->user, true);
     }
 }

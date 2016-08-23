@@ -5,6 +5,10 @@
 </template>
 <script>
     export default{
-
+        init() {
+            this.$http.get('/api/user').then((resp) => {
+               console.log(resp);
+            });
+        }
     }
 </script>
