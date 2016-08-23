@@ -1,11 +1,11 @@
-$family-sans-serif: 'Raleway', Arial, sans-serif;
+$family-sans-serif: "Raleway", Arial, sans-serif;
 $body-background: #fff;
 $radius: 0px;
 $primary: #69707a;
 
 
-@import 'node_modules/bulma/bulma';
-@import 'node_modules/font-awesome/scss/font-awesome';
+@import "node_modules/bulma/bulma";
+@import "node_modules/font-awesome/scss/font-awesome";
 @import url(http://fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,700,800);
 
 body {

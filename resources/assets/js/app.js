@@ -4,7 +4,7 @@ let VueRouter = require('vue-router');
 
 const app = Vue.extend({
     components: {
-        // navigation: require('./components/navigation.vue')
+        navigation: require('./components/navigation.vue')
     }
 });
 

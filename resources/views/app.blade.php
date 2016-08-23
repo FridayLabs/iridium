@@ -7,10 +7,12 @@
 </head>
 <body>
 <div id="app">
-    {{--<navigation></navigation>--}}
-    <div class="router-container container">
-        <router-view></router-view>
-    </div>
+    <section class="section">
+        <navigation></navigation>
+        <div class="router-container container">
+            <router-view></router-view>
+        </div>
+    </section>
 </div>
 <script src="/js/app.js"></script>
 </body>

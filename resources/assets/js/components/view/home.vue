@@ -4,11 +4,5 @@
     </div>
 </template>
 <script>
-    export default{
-        init() {
-            this.$http.get('/api/user').then((resp) => {
-               console.log(resp);
-            });
-        }
-    }
+    export default{}
 </script>

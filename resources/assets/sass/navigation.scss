@@ -1,0 +1,21 @@
+.navigation {
+  .triangle {
+    font-size: 48px;
+    color: #52565a;
+    font-weight: bold;
+  }
+  .buttons {
+    justify-content: flex-end;
+    display: flex;
+
+    a {
+      font-size: 20px;
+      margin-left: 20px;
+    }
+  }
+  .column {
+    align-items: center;
+    //padding: 0 50px;
+    //margin: 10px 0;
+  }
+}
