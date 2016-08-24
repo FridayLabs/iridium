@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Iridium\User::class,
+            'model' => Iridium\Models\User::class,
         ],
 
         // 'users' => [

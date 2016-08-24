@@ -1,6 +1,6 @@
 <?php
 
-namespace Iridium;
+namespace Iridium\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

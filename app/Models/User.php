@@ -1,6 +1,6 @@
 <?php
 
-namespace Iridium;
+namespace Iridium\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -18,8 +18,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function vk()
+    public function socialAccounts()
     {
-        return $this->hasOne(VkAccount::class);
+        return $this->hasMany(SocialAccount::class);
     }
 }

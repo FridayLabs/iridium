@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Iridium\LoginToken;
+use Iridium\Models\LoginToken;
 
 class UserInvite extends Mailable
 {

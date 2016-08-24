@@ -5,7 +5,7 @@ namespace Iridium\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Iridium\Http\Behaviors\AuthenticatesUser;
 use Iridium\Http\Controllers\Controller;
-use Iridium\LoginToken;
+use Iridium\Models\LoginToken;
 use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
