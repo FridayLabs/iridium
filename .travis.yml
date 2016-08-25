@@ -8,12 +8,19 @@ services:
   - docker
 
 env:
-  - TRAVIS_NODE_VERSION="6"
+  APP_ENV: testing
+  CACHE_DRIVER: array
+  SESSION_DRIVER: array
+  QUEUE_DRIVER: sync
+  DB_CONNECTION: sqlite
+  APP_KEY: 16efa6c23c2e8c705826b0e66778fbe7
 
 install:
-  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
-  - composer install --prefer-dist
+  - . $HOME/.nvm/nvm.sh
+  - nvm install stable
+  - nvm use stable
   - npm install --no-progress --no-spin
   - gulp
   - cp .env.example .env
+  - php artisan migrate
 script: ./runtests

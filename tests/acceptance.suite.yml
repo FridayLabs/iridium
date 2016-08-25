@@ -6,8 +6,6 @@ modules:
             part: ORM
             cleanup: false
         - WebDriver:
-            url: 'http://web/'
-            host: selenium
-            port: 4444
-            browser: chrome
+            url: 'http://localhost:8000'
+            browser: phantomjs
         - \Helper\Acceptance
