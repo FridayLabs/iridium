@@ -3,6 +3,8 @@ language: php
 php:
   - '7.0'
 
+sudo: true
+
 env:
   APP_ENV: testing
   CACHE_DRIVER: array
