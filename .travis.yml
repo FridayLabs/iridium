@@ -15,11 +15,11 @@ install:
   - . $HOME/.nvm/nvm.sh
   - nvm install stable
   - nvm use stable
-  - npm install --no-progress --no-spin
-  - gulp
+  - npm install --no-progress --no-spin &>/dev/null
+  - gulp &>/dev/null
   - cp .env.example .env
-  - composer install --no-interaction
+  - composer install --no-interaction &>/dev/null
   - php artisan key:generate
   - touch database/db.sqlite
   - php artisan migrate
-script: ./runtests
+script: ./runtests --debug
