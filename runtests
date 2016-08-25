@@ -4,11 +4,29 @@ import os, time, sys
 import signal
 from functools import partial
 from subprocess import Popen, check_call
+import requests
+import glob
 
 proc_run = partial(Popen, shell=True, preexec_fn=os.setsid)
 
 def stop_process(process):
     os.killpg(os.getpgid(process.pid), signal.SIGKILL)
+
+def send_artifacts():
+    attachments = []
+    for file in glob.glob('tests/_output/*'):
+        attachments.append(("attachment", open(file)))
+    print attachments
+    return
+    return requests.post(
+            "https://api.mailgun.net/v3/%s/messages" % os.environ['MAILGUN_DOMAIN'],
+            auth=("api",  os.environ['MAILGUN_APIKEY']),
+            files=attachments,
+            data={"from": "Travis <alistar.neron@gmail.com>",
+                  "to": "alistar.neron@gmail.com",
+                  "subject": "Build %s failed. Here is artifacts" % os.environ['TRAVIS_BUILD_NUMBER'],
+                  "html": "<html></html>"})
+
 
 def main():
     web_log = open('tests/_output/webserver.log', "w")
@@ -19,9 +37,13 @@ def main():
         time.sleep(3)
         check_call(['vendor/bin/codecept', 'build'])
         code = check_call(['vendor/bin/codecept', 'run'] + sys.argv[1:])
+    except:
+        code = 1
     finally:
         stop_process(web)
         stop_process(phantomjs)
+    if 'TRAVIS' in os.environ and code != 0:
+        send_artifacts()
     exit(code)
 
 
