@@ -2,7 +2,7 @@
 
 import os, time, sys
 import signal
-from functoolsp import partial
+from functools import partial
 from subprocess import Popen, call
 
 proc_run = partial(Popen, shell=True, preexec_fn=os.setsid)
