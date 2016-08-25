@@ -24,7 +24,7 @@ def send_artifacts():
             data={"from": "Travis <alistar.neron@gmail.com>",
                   "to": "alistar.neron@gmail.com",
                   "subject": "Build %s failed. Here is artifacts" % os.environ['TRAVIS_BUILD_NUMBER'],
-                  "html": "<html></html>"})
+                  "html": "<html> </html>"})
 
 
 def main():
