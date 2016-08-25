@@ -25,5 +25,5 @@ install:
   - touch database/db.sqlite
   - php artisan migrate
   # wat
-  - pip install requests
+  - sudo pip install requests
 script: ./runtests --debug
