@@ -9,7 +9,7 @@ env:
   SESSION_DRIVER: array
   QUEUE_DRIVER: sync
   DB_CONNECTION: sqlite
-  APP_KEY: 16efa6c23c2e8c705826b0e66778fbe7
+  DB_DATABASE: database/db.sqlite
 
 install:
   - . $HOME/.nvm/nvm.sh
@@ -18,6 +18,8 @@ install:
   - npm install --no-progress --no-spin
   - gulp
   - cp .env.example .env
-  - composer install
+  - composer install --no-interaction
+  - php artisan key:generate
+  - touch database/db.sqlite
   - php artisan migrate
 script: ./runtests
