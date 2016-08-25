@@ -24,4 +24,6 @@ install:
   - php artisan key:generate
   - touch database/db.sqlite
   - php artisan migrate
+  # wat
+  - pip install requests
 script: ./runtests --debug
