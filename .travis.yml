@@ -21,9 +21,9 @@ install:
   - gulp &>/dev/null
   - cp .env.example .env
   - composer install --no-interaction &>/dev/null
-  - php artisan key:generate
   - touch database/db.sqlite
   - php artisan migrate
-  # wat
+  - php artisan key:generate
+  - php artisan passport:install
   - sudo pip install requests
 script: ./runtests --debug
