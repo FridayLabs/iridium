@@ -14,8 +14,9 @@ def stop_process(process):
 
 def send_artifacts():
     attachments = []
-    for file in glob.glob('tests/_output/*'):
-        attachments.append(("attachment", open(file)))
+    for path in ['tests/_output/*', 'storage/logs/*']
+        for file in glob.glob(path):
+            attachments.append(("attachment", open(file)))
     print "Sending artifacts"
     return requests.post(
             "https://api.mailgun.net/v3/%s/messages" % os.environ['MAILGUN_DOMAIN'],
