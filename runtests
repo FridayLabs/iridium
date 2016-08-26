@@ -14,7 +14,7 @@ def stop_process(process):
 
 def send_artifacts():
     attachments = []
-    for path in ['tests/_output/*', 'storage/logs/*']
+    for path in ['tests/_output/*', 'storage/logs/*']:
         for file in glob.glob(path):
             attachments.append(("attachment", open(file)))
     print "Sending artifacts"
