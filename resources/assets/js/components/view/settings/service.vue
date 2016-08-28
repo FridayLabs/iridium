@@ -5,16 +5,23 @@
                 <i class="service-icon fa fa-{{service.name}}"></i>
             </div>
             <div class="level-item">
-                <span class="tag">Tracks source</span>
-                <span class="tag">Playlists</span>
-                <span class="tag">Recommendations</span>
+                <span class="tag" v-if="service.features.isTrackProvider">Tracks source</span>
+                <span class="tag" v-if="service.features.isPlaylistProvider">Playlists</span>
+                <span class="tag" v-if="service.features.isRecommendationProvider">Recommendations</span>
+                <span class="tag" v-if="service.features.isScrobblingConsumer">Scrobbling</span>
             </div>
         </div>
-        <div class="level-right">
+        <div class="level-right buttons">
             <div class="level-item">
-                <button class="button is-primary" v-show="!service.isConnected">Connect</button>
-                <button class="button is-primary is-outlined" v-show="service.isConnected">Disconnect</button>
-                <button class="button is-primary" v-show="service.isConnected">Sync now</button>
+                <button class="button is-primary" v-show="!service.isConnected" @click="connect(service)">
+                    Connect
+                </button>
+                <button class="button is-primary is-outlined" v-show="service.isConnected" @click="disconnect(service)">
+                    Disconnect
+                </button>
+                <button class="button is-primary is-outlined" v-show="service.isConnected" @click="sync(service)">
+                    Sync
+                </button>
             </div>
         </div>
     </div>
@@ -22,8 +29,17 @@
 <script>
     export default{
         props: ['service'],
-        created() {
-            console.log(this.service.name);
+        
+        methods: {
+            connect(service) {
+                service.isConnected = true;
+            },
+            disconnect(service) {
+                service.isConnected = false;
+            },
+            sync(service) {
+
+            },
         }
     }
 </script>

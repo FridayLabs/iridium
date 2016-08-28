@@ -5,7 +5,6 @@
                 <h2 class="title is-2">Settings</h2>
                 <h3 class="title is-3">Services</h3>
 
-                <div v-if="$loadingRouteData">Loading data...</div>
                 <service v-for="service in services" :service="service"></service>
 
                 <h3 class="title is-3">Account</h3>
@@ -27,15 +26,15 @@
 </template>
 <script>
     import service from './settings/service.vue'
-    import {fetchServices} from '../../vuex/actions';
+    import {fetch} from '../../vuex/modules/services';
 
     export default{
         vuex: {
             getters: {
-                services: ({services}) => services.all
+                services: ({services}) => services.all()
             },
             actions: {
-                fetchServices
+                fetchServices: fetch
             }
         },
         created() {
