@@ -5,24 +5,8 @@
                 <h2 class="title is-2">Settings</h2>
                 <h3 class="title is-3">Services</h3>
 
-                <div class="level is-mobile">
-                    <div class="level-left">
-                        <div class="level-item">
-                            <i class="service-icon fa fa-vk"></i>
-                        </div>
-                        <div class="level-item">
-                            <span class="tag">Tracks source</span>
-                            <span class="tag">Playlists</span>
-                            <span class="tag">Recommendations</span>
-                        </div>
-                    </div>
-                    <div class="level-right">
-                        <div class="level-item">
-                            <button class="button is-primary is-outlined">Connect</button>
-                            <button class="button is-primary is-outlined">Sync now</button>
-                        </div>
-                    </div>
-                </div>
+                <div v-if="$loadingRouteData">Loading data...</div>
+                <service v-for="service in services" :service="service"></service>
 
                 <h3 class="title is-3">Account</h3>
                 <label class="label">Name</label>
@@ -42,5 +26,21 @@
     </div>
 </template>
 <script>
-    export default{}
+    import service from './settings/service.vue'
+    import {fetchServices} from '../../vuex/actions';
+
+    export default{
+        vuex: {
+            getters: {
+                services: ({services}) => services.all
+            },
+            actions: {
+                fetchServices
+            }
+        },
+        created() {
+            this.fetchServices();
+        },
+        components: {service},
+    }
 </script>

@@ -1,8 +1,10 @@
-require('./bootstrap');
+import './bootstrap'
+
+import Welcome from './components/view/welcome.vue';
 
 let app = new Vue({
     el: '#app',
     components: {
-        welcome: require('./components/view/welcome.vue')
+        welcome: Welcome
     }
 });

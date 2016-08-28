@@ -1,6 +1,9 @@
+import Vue from 'vue'
+import VueResource from 'vue-resource';
 
-window.Vue = require('vue');
-require('vue-resource');
+window.Vue = Vue;
+Vue.use(VueResource);
+
 
 Vue.http.interceptors.push((request, next) => {
     request.headers['X-CSRF-TOKEN'] = Iridium.csrfToken;

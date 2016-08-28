@@ -22,4 +22,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(SocialAccount::class);
     }
+
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
+
+    public function VKAccount()
+    {
+        return $this->socialAccounts()->where('provider', 'vk')->first();
+    }
 }
