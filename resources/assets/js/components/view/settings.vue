@@ -31,7 +31,7 @@
     export default{
         vuex: {
             getters: {
-                services: ({services}) => services.all()
+                services: ({services}) => services.services
             },
             actions: {
                 fetchServices: fetch
@@ -40,6 +40,6 @@
         created() {
             this.fetchServices();
         },
-        components: {service},
+        components: {service}
     }
 </script>

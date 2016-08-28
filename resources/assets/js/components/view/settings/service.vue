@@ -13,33 +13,52 @@
         </div>
         <div class="level-right buttons">
             <div class="level-item">
-                <button class="button is-primary" v-show="!service.isConnected" @click="connect(service)">
+                <button
+                        :class="['button', 'is-primary', isLoading ? 'is-loading' : '']"
+                        v-show="!service.isConnected"
+                        @click="tryConnect(service)">
                     Connect
                 </button>
-                <button class="button is-primary is-outlined" v-show="service.isConnected" @click="disconnect(service)">
+                <button
+                        :class="['button', 'is-primary', 'is-outlined', isLoading ? 'is-loading' : '']"
+                        v-show="service.isConnected"
+                        @click="tryDisconnect(service)">
                     Disconnect
-                </button>
-                <button class="button is-primary is-outlined" v-show="service.isConnected" @click="sync(service)">
-                    Sync
                 </button>
             </div>
         </div>
     </div>
 </template>
 <script>
+    import {connect, disconnect} from '../../../vuex/modules/services';
     export default{
         props: ['service'],
-        
+        vuex: {
+            actions: {
+                connect,
+                disconnect
+            }
+        },
+        data() {
+          return {
+              isLoading: false
+          }
+        },
         methods: {
-            connect(service) {
-                service.isConnected = true;
+            tryConnect(service) {
+                this.connect(
+                        service.name,
+                        () => this.isLoading = true,
+                        () => this.isLoading = false,
+                );
             },
-            disconnect(service) {
-                service.isConnected = false;
-            },
-            sync(service) {
-
-            },
+            tryDisconnect(service) {
+                this.disconnect(
+                        service.name,
+                        () => this.isLoading = true,
+                        () => this.isLoading = false,
+                );
+            }
         }
     }
 </script>

@@ -7,3 +7,5 @@ Route::get('/user', function (Request $request) {
 });
 
 Route::get('/services', 'ServiceController@index');
+Route::get('/services/connect/{service}', 'ServiceController@connect');
+Route::get('/services/disconnect/{service}', 'ServiceController@disconnect');
