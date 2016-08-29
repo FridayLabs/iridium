@@ -2,11 +2,12 @@ import {
     SERVICES_FETCHED,
     SERVICE_CONNECTED,
     SERVICE_DISCONNECTED,
+    SERVICE_LOADING,
 } from '../mutation-types';
 
 const state = {
     services: {},
-    asyncLoading: false
+    asyncLoading: {}
 };
 
 const mutations = {
@@ -15,9 +16,16 @@ const mutations = {
     },
     [SERVICE_CONNECTED] (state, service) {
         state.services[service].isConnected = true;
+        state.services[service].isLoading = false;
     },
     [SERVICE_DISCONNECTED] (state, service) {
         state.services[service].isConnected = false;
+        state.services[service].isLoading = false;
+    },
+    [SERVICE_LOADING] (state, service) {
+        state.services[service] = Object.assign({}, state.services[service], {
+            isLoading: true
+        });
     }
 };
 
@@ -28,18 +36,16 @@ export const fetch = ({dispatch}) => {
 };
 
 export const connect = ({dispatch}, service) => {
-    state.asyncLoading = true;
+    dispatch(SERVICE_LOADING, service);
     return window.Vue.http.get('/api/services/connect/' + service).then(res => {
         dispatch(SERVICE_CONNECTED, service);
-        state.asyncLoading = false;
     });
 };
 
 export const disconnect = ({dispatch}, service) => {
-    state.asyncLoading = true;
+    dispatch(SERVICE_LOADING, service);
     return window.Vue.http.get('/api/services/disconnect/' + service).then(res => {
         dispatch(SERVICE_DISCONNECTED, service);
-        state.asyncLoading = false;
     });
 };
 

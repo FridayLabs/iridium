@@ -14,13 +14,13 @@
         <div class="level-right buttons">
             <div class="level-item">
                 <button
-                        :class="['button', 'is-primary', isLoading ? 'is-loading' : '']"
+                        :class="['button', 'is-primary', {'is-loading': isLoading}]"
                         v-show="!service.isConnected"
-                        @click="disconnect(service.name)">
+                        @click="connect(service.name)">
                     Connect
                 </button>
                 <button
-                        :class="['button', 'is-primary', 'is-outlined', isLoading ? 'is-loading' : '']"
+                        :class="['button', 'is-primary', 'is-outlined', {'is-loading': isLoading}]"
                         v-show="service.isConnected"
                         @click="disconnect(service.name)">
                     Disconnect
@@ -34,17 +34,14 @@
     export default{
         props: ['service'],
         vuex: {
-            getters: {
-                asyncLoading: ({services}) => services.asyncLoading
-            },
             actions: {
                 connect,
                 disconnect
             }
         },
         computed: {
-            isLoading: function () {
-                return this.asyncLoading[this.service.name];
+            isLoading () {
+                return this.service.isLoading
             }
         }
     }
