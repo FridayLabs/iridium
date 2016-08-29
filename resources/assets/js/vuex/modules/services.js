@@ -6,9 +6,7 @@ import {
 
 const state = {
     services: {},
-    all() {
-        return this.services;
-    }
+    asyncLoading: false
 };
 
 const mutations = {
@@ -17,11 +15,9 @@ const mutations = {
     },
     [SERVICE_CONNECTED] (state, service) {
         state.services[service].isConnected = true;
-        state.services[service].isLoading = false;
     },
     [SERVICE_DISCONNECTED] (state, service) {
         state.services[service].isConnected = false;
-        state.services[service].isLoading = false;
     }
 };
 
@@ -31,19 +27,19 @@ export const fetch = ({dispatch}) => {
     });
 };
 
-export const connect = ({dispatch}, service, on_start, on_done) => {
-    on_start();
+export const connect = ({dispatch}, service) => {
+    state.asyncLoading = true;
     return window.Vue.http.get('/api/services/connect/' + service).then(res => {
         dispatch(SERVICE_CONNECTED, service);
-        on_done();
+        state.asyncLoading = false;
     });
 };
 
-export const disconnect = ({dispatch}, service, on_start, on_done) => {
-    on_start();
+export const disconnect = ({dispatch}, service) => {
+    state.asyncLoading = true;
     return window.Vue.http.get('/api/services/disconnect/' + service).then(res => {
         dispatch(SERVICE_DISCONNECTED, service);
-        on_done();
+        state.asyncLoading = false;
     });
 };
 

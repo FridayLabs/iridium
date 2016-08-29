@@ -16,13 +16,13 @@
                 <button
                         :class="['button', 'is-primary', isLoading ? 'is-loading' : '']"
                         v-show="!service.isConnected"
-                        @click="tryConnect(service)">
+                        @click="disconnect(service.name)">
                     Connect
                 </button>
                 <button
                         :class="['button', 'is-primary', 'is-outlined', isLoading ? 'is-loading' : '']"
                         v-show="service.isConnected"
-                        @click="tryDisconnect(service)">
+                        @click="disconnect(service.name)">
                     Disconnect
                 </button>
             </div>
@@ -34,30 +34,17 @@
     export default{
         props: ['service'],
         vuex: {
+            getters: {
+                asyncLoading: ({services}) => services.asyncLoading
+            },
             actions: {
                 connect,
                 disconnect
             }
         },
-        data() {
-          return {
-              isLoading: false
-          }
-        },
-        methods: {
-            tryConnect(service) {
-                this.connect(
-                        service.name,
-                        () => this.isLoading = true,
-                        () => this.isLoading = false,
-                );
-            },
-            tryDisconnect(service) {
-                this.disconnect(
-                        service.name,
-                        () => this.isLoading = true,
-                        () => this.isLoading = false,
-                );
+        computed: {
+            isLoading: function () {
+                return this.asyncLoading[this.service.name];
             }
         }
     }
