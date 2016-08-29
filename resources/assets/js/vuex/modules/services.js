@@ -31,19 +31,19 @@ export const fetch = ({dispatch}) => {
     });
 };
 
-export const connect = ({dispatch}, service, cb, ecb) => {
-    cb();
+export const connect = ({dispatch}, service, on_start, on_done) => {
+    on_start();
     return window.Vue.http.get('/api/services/connect/' + service).then(res => {
         dispatch(SERVICE_CONNECTED, service);
-        ecb();
+        on_done();
     });
 };
 
-export const disconnect = ({dispatch}, service, cb, ecb) => {
-    cb();
+export const disconnect = ({dispatch}, service, on_start, on_done) => {
+    on_start();
     return window.Vue.http.get('/api/services/disconnect/' + service).then(res => {
         dispatch(SERVICE_DISCONNECTED, service);
-        ecb();
+        on_done();
     });
 };
 
