@@ -6,8 +6,7 @@ import {
 } from '../mutation-types';
 
 const state = {
-    services: {},
-    asyncLoading: {}
+    services: {}
 };
 
 const mutations = {
@@ -16,16 +15,14 @@ const mutations = {
     },
     [SERVICE_CONNECTED] (state, service) {
         state.services[service].isConnected = true;
-        state.services[service].isLoading = false;
+        window.Vue.set(state.services[service], 'isLoading', false);
     },
     [SERVICE_DISCONNECTED] (state, service) {
         state.services[service].isConnected = false;
-        state.services[service].isLoading = false;
+        window.Vue.set(state.services[service], 'isLoading', false);
     },
     [SERVICE_LOADING] (state, service) {
-        state.services[service] = Object.assign({}, state.services[service], {
-            isLoading: true
-        });
+        window.Vue.set(state.services[service], 'isLoading', true);
     }
 };
 

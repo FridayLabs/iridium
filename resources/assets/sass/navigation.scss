@@ -4,18 +4,17 @@
     color: #52565a;
     font-weight: bold;
   }
+  .search-bar {
+    max-width: 70%;  
+  }
   .buttons {
-    justify-content: flex-end;
-    display: flex;
-
     a {
       font-size: 20px;
       margin-left: 20px;
+
+      .fa {
+          vertical-align: baseline;
+      }
     }
-  }
-  .column {
-    align-items: center;
-    //padding: 0 50px;
-    //margin: 10px 0;
   }
 }

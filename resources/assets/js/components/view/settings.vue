@@ -6,35 +6,21 @@
                 <h3 class="title is-3">Services</h3>
 
                 <service v-for="service in services" :service="service"></service>
-
-                <h3 class="title is-3">Account</h3>
-                <label class="label">Name</label>
-                <p class="control">
-                    <input class="input" type="text" placeholder="Your Name">
-                </p>
-                <label class="label">Email</label>
-                <p class="control">
-                    <input class="input" type="text" placeholder="Email">
-                </p>
-                <label class="label">Password</label>
-                <p class="control">
-                    <input class="input" type="password" placeholder="Password">
-                </p>
             </div>
         </div>
     </div>
 </template>
 <script>
     import service from './settings/service.vue'
-    import {fetch} from '../../vuex/modules/services';
+    import {fetch as fetchServices} from '../../vuex/modules/services';
 
     export default{
         vuex: {
             getters: {
-                services: ({services}) => services.services
+                services: ({services}) => services.services,
             },
             actions: {
-                fetchServices: fetch
+                fetchServices,
             }
         },
         created() {

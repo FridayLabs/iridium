@@ -9,7 +9,7 @@
 <div id="app">
     <section class="section">
         <navigation></navigation>
-        <div class="router-container container">
+        <div class="router-container container app-container">
             <router-view></router-view>
         </div>
     </section>

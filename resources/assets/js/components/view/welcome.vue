@@ -11,7 +11,7 @@
                     <div class="control is-grouped has-addons has-addons-centered">
                         <p class="control">
                             <input v-model="email" name="email"
-                                   v-bind:class="['input', errors.length ? 'is-danger' : '']"
+                                   v-bind:class="['input', {'is-danger': errors.length}]"
                                    type="email" placeholder="Email">
                             <span v-for="error in errors" class="help is-danger">{{ error }}</span>
                         </p>

@@ -30,11 +30,11 @@ class ServiceController extends Controller
 
     public function connect($service)
     {
-        sleep(10);
+        
     }
 
     public function disconnect($service)
     {
-        sleep(10);
+        
     }
 }

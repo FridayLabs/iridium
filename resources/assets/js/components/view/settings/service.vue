@@ -20,7 +20,7 @@
                     Connect
                 </button>
                 <button
-                        :class="['button', 'is-primary', 'is-outlined', {'is-loading': isLoading}]"
+                        :class="['button', 'is-outlined', {'is-loading': isLoading}]"
                         v-show="service.isConnected"
                         @click="disconnect(service.name)">
                     Disconnect
