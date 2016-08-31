@@ -10,7 +10,7 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $services = auth()->user()->services()->get()->keyBy('name')->all();
+        $services = auth()->user()->services()->where('is_active', true)->get()->keyBy('name')->all();
         foreach (config('iridium.services') as $name => $features) {
             if (array_key_exists($name, $services)) {
                 $services[$name]['features'] = $features;
