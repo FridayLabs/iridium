@@ -13,10 +13,8 @@ class ServiceController extends Controller
         $services = auth()->user()->services()->get()->keyBy('name')->all();
         foreach (config('iridium.services') as $name => $features) {
             if (array_key_exists($name, $services)) {
-                $services[$name] += [
-                    'features' => $features,
-                    'isConnected' => true,
-                ];
+                $services[$name]['features'] = $features;
+                $services[$name]['isConnected'] = true;
             } else {
                 $services[$name] = [
                     'name' => $name,
@@ -30,11 +28,17 @@ class ServiceController extends Controller
 
     public function connect($service)
     {
-        
+        $service = auth()->user()->services()->firstOrNew(['name' => $service]);
+        $service->is_active = true;
+        $service->save();
     }
 
     public function disconnect($service)
     {
-        
+        $service = auth()->user()->services()->where('name', $service)->first();
+        if ($service) {
+            $service->is_active = false;
+            $service->save();
+        }
     }
 }

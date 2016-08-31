@@ -18,6 +18,8 @@ class CreateServicesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('name');
 
+            $table->boolean('is_active')->default(true);
+
             $table->timestamp('last_sync_at')->nullable();
             $table->timestamps();
         });
