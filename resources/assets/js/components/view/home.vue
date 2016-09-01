@@ -1,11 +1,6 @@
 <template>
     <div class="columns">
-    	<div class="column is-half is-offset-one-quarter">
-			<h2 class="title is-2">Now playing</h2>
-        </div>
-    </div>
-    <div class="columns">
-        <div class="column is-one-quarter">
+        <div class="column is-2">
             <aside class="menu">
                 <ul class="menu-list">
                     <li><a class="is-active" href="#">Now Playing</a></li>
@@ -28,8 +23,9 @@
                 </ul>
             </aside>
         </div>
-        <div class="column is-half">
-            <div class="level is-mobile">
+        <div class="column is-6 is-offset-1">
+        	<h2 class="title is-2">Now playing</h2>
+            <div class="level is-mobile track" v-for="x in [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]">
                 <div class="level-item">
                     <i class="fa fa-play"></i>
                 </div>
